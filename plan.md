@@ -167,15 +167,15 @@ $$\text{Browser (React + TS)} \longrightarrow \text{Typed Service Layer} \longri
 
 ## 7. Master Feature Checklist & Status Tracker
 
-- [ ] **Phase 0: Workspace Inspection & Baseline Setup**
+- [x] **Phase 0: Workspace Inspection & Baseline Setup**
   - [x] Check directory state and file inventory
   - [x] Inspect Node & NPM versions (`Node v22.13.1`, `NPM 10.9.2`)
-  - [x] Check Git state (Uninitialized)
+  - [x] Check Git state (Initialized with first commit)
 
-- [ ] **Phase 1: Project Scaffolding, Design System & App Shell**
-  - [ ] **F-1.1**: Scaffold React + TypeScript + Vite project
-  - [ ] **F-1.2**: Implement CSS design system tokens and responsive layout shell
-  - [ ] **F-1.3**: Configure React Router and lazy-loaded page shells
+- [x] **Phase 1: Project Scaffolding, Design System & App Shell**
+  - [x] **F-1.1**: Scaffold React + TypeScript + Vite project
+  - [x] **F-1.2**: Implement CSS design system tokens and responsive layout shell
+  - [x] **F-1.3**: Configure React Router and lazy-loaded page shells
 
 - [ ] **Phase 2: Supabase Integration & Environment Configuration**
   - [ ] **F-2.1**: Implement typed `supabaseClient.ts` with strict environment variable validation
