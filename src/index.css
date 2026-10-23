@@ -523,3 +523,237 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: var(--sidebar-width);
   }
 }
+
+/* ==========================================================================
+   ANIMATIONS & DIAGNOSTICS UI (PHASE 2)
+   ========================================================================== */
+
+/* Keyframe Animations */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes pulseAmberGlow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+@keyframes modalSpring {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes spinSmooth {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulsing Status Dots */
+.status-dot-pulse-green {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: #10b981;
+  animation: pulseGlow 2s infinite;
+}
+
+.status-dot-pulse-amber {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: #f59e0b;
+  animation: pulseAmberGlow 2s infinite;
+}
+
+.status-dot-red {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: #ef4444;
+}
+
+/* Interactive Status Pill in Header */
+.status-indicator-interactive {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.status-indicator-interactive:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* Modal Dialog */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-dropdown);
+  animation: modalSpring 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  padding: 28px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-title h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.modal-title p {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.close-btn {
+  padding: 6px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.close-btn:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-main);
+}
+
+/* Diagnostics Step Cards */
+.diagnostic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-canvas);
+  margin-bottom: 12px;
+}
+
+.diagnostic-item.success {
+  border-color: #bbf7d0;
+  background-color: #f0fdf4;
+}
+
+.diagnostic-item.warning {
+  border-color: #fef08a;
+  background-color: #fefce8;
+}
+
+.diagnostic-item.danger {
+  border-color: #fecaca;
+  background-color: #fef2f2;
+}
+
+/* Code Snippet Box */
+.code-box {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+/* Setup Banner */
+.setup-banner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #334155;
+  box-shadow: var(--shadow-md);
+  animation: slideDownFade 300ms ease-out;
+}
+
+@media (max-width: 640px) {
+  .setup-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

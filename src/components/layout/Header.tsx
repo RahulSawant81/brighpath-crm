@@ -1,12 +1,22 @@
 import React from 'react';
 import { Menu, Bell, ShieldCheck } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { ConnectionStatusBadge } from '../common/ConnectionStatusBadge';
+import { HealthCheckResult } from '../../services/healthService';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
+  health: HealthCheckResult;
+  onOpenDiagnostics: () => void;
+  isChecking: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onToggleSidebar,
+  health,
+  onOpenDiagnostics,
+  isChecking,
+}) => {
   const location = useLocation();
 
   const getBreadcrumbTitle = (pathname: string): string => {
@@ -39,10 +49,13 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
       </div>
 
       <div className="header-right">
-        <div className="status-indicator">
-          <span className="status-dot"></span>
-          <span>System Online</span>
-        </div>
+        {/* Real-time Interactive Connection Status Badge */}
+        <ConnectionStatusBadge
+          status={health.status}
+          latencyMs={health.latencyMs}
+          onOpenDiagnostics={onOpenDiagnostics}
+          isChecking={isChecking}
+        />
 
         <button className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8125rem' }}>
           <ShieldCheck size={15} color="#2563eb" />

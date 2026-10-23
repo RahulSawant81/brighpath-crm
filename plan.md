@@ -177,9 +177,9 @@ $$\text{Browser (React + TS)} \longrightarrow \text{Typed Service Layer} \longri
   - [x] **F-1.2**: Implement CSS design system tokens and responsive layout shell
   - [x] **F-1.3**: Configure React Router and lazy-loaded page shells
 
-- [ ] **Phase 2: Supabase Integration & Environment Configuration**
-  - [ ] **F-2.1**: Implement typed `supabaseClient.ts` with strict environment variable validation
-  - [ ] **F-2.2**: Implement connection diagnostics & status indicator
+- [x] **Phase 2: Supabase Integration & Environment Configuration**
+  - [x] **F-2.1**: Implement typed `supabaseClient.ts` with strict environment variable validation
+  - [x] **F-2.2**: Implement connection diagnostics & status indicator
 
 - [ ] **Phase 3: Database Schema, Migrations, Seed Data & RLS**
   - [ ] **F-3.1**: Create `20261023000001_initial_schema.sql` (Tables, FKs, Constraints)
