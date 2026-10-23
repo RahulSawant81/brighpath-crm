@@ -181,10 +181,10 @@ $$\text{Browser (React + TS)} \longrightarrow \text{Typed Service Layer} \longri
   - [x] **F-2.1**: Implement typed `supabaseClient.ts` with strict environment variable validation
   - [x] **F-2.2**: Implement connection diagnostics & status indicator
 
-- [ ] **Phase 3: Database Schema, Migrations, Seed Data & RLS**
-  - [ ] **F-3.1**: Create `20261023000001_initial_schema.sql` (Tables, FKs, Constraints)
-  - [ ] **F-3.2**: Create `20261023000002_rls_policies.sql` (Strict tenant & role policies)
-  - [ ] **F-3.3**: Create `20261023000003_seed_data.sql` and Admin Bootstrap guide
+- [x] **Phase 3: Database Schema, Migrations, Seed Data & RLS**
+  - [x] **F-3.1**: Create `20261023000001_initial_schema.sql` (Tables, FKs, Constraints)
+  - [x] **F-3.2**: Create `20261023000002_rls_policies.sql` (Strict tenant & role policies)
+  - [x] **F-3.3**: Create `20261023000003_seed_data.sql` and Admin Bootstrap guide
 
 - [ ] **Phase 4: Authentication & Role Lifecycle**
   - [ ] **F-4.1**: Build `AuthContext` and session subscription hooks
