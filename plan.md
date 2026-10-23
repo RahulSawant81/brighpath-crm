@@ -186,10 +186,10 @@ $$\text{Browser (React + TS)} \longrightarrow \text{Typed Service Layer} \longri
   - [x] **F-3.2**: Create `20261023000002_rls_policies.sql` (Strict tenant & role policies)
   - [x] **F-3.3**: Create `20261023000003_seed_data.sql` and Admin Bootstrap guide
 
-- [ ] **Phase 4: Authentication & Role Lifecycle**
-  - [ ] **F-4.1**: Build `AuthContext` and session subscription hooks
-  - [ ] **F-4.2**: Build Login and Register forms with validation and error alerts
-  - [ ] **F-4.3**: Implement `ProtectedRoute` and `RoleGate` components
+- [x] **Phase 4: Authentication & Role Lifecycle**
+  - [x] **F-4.1**: Build `AuthContext` and session subscription hooks
+  - [x] **F-4.2**: Build Login and Register forms with validation and error alerts
+  - [x] **F-4.3**: Implement `ProtectedRoute` and `RoleGate` components
 
 - [ ] **Phase 5: Lead Management Module**
   - [ ] **F-5.1**: Build `leadService.ts` strongly typed data access layer

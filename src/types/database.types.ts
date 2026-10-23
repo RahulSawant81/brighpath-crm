@@ -66,43 +66,118 @@ export interface Activity {
   actor?: Profile | null;
 }
 
-// Supabase PostgREST Database schema definition
+// Standard Supabase PostgREST Database schema definition
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
 export interface Database {
   public: {
     Tables: {
       profiles: {
         Row: Profile;
-        Insert: Omit<Profile, 'created_at' | 'updated_at'> & {
+        Insert: {
+          id: string;
+          full_name: string;
+          role?: UserRole;
           created_at?: string;
           updated_at?: string;
         };
-        Update: Partial<Omit<Profile, 'id' | 'created_at'>>;
+        Update: {
+          id?: string;
+          full_name?: string;
+          role?: UserRole;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
       };
       leads: {
         Row: Lead;
-        Insert: Omit<Lead, 'id' | 'created_at' | 'updated_at'> & {
+        Insert: {
           id?: string;
+          full_name: string;
+          email?: string | null;
+          phone: string;
+          course_interest: string;
+          source: LeadSource | string;
+          status?: LeadStatus;
+          assigned_to?: string | null;
+          created_by?: string | null;
+          notes?: string | null;
           created_at?: string;
           updated_at?: string;
         };
-        Update: Partial<Omit<Lead, 'id' | 'created_at'>>;
+        Update: {
+          id?: string;
+          full_name?: string;
+          email?: string | null;
+          phone?: string;
+          course_interest?: string;
+          source?: LeadSource | string;
+          status?: LeadStatus;
+          assigned_to?: string | null;
+          created_by?: string | null;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
       };
       follow_ups: {
         Row: FollowUp;
-        Insert: Omit<FollowUp, 'id' | 'created_at'> & {
+        Insert: {
           id?: string;
+          lead_id: string;
+          assigned_to?: string | null;
+          due_at: string;
+          note: string;
+          status?: FollowUpStatus;
+          completed_at?: string | null;
+          created_by?: string | null;
           created_at?: string;
         };
-        Update: Partial<Omit<FollowUp, 'id' | 'created_at'>>;
+        Update: {
+          id?: string;
+          lead_id?: string;
+          assigned_to?: string | null;
+          due_at?: string;
+          note?: string;
+          status?: FollowUpStatus;
+          completed_at?: string | null;
+          created_by?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
       };
       activities: {
         Row: Activity;
-        Insert: Omit<Activity, 'id' | 'created_at'> & {
+        Insert: {
           id?: string;
+          lead_id: string;
+          actor_id?: string | null;
+          activity_type: ActivityType;
+          description: string;
+          metadata?: Json | null;
           created_at?: string;
         };
-        Update: Partial<Omit<Activity, 'id' | 'created_at'>>;
+        Update: {
+          id?: string;
+          lead_id?: string;
+          actor_id?: string | null;
+          activity_type?: ActivityType;
+          description?: string;
+          metadata?: Json | null;
+          created_at?: string;
+        };
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
   };
 }

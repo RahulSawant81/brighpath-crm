@@ -1,8 +1,9 @@
 import React from 'react';
-import { Menu, Bell, ShieldCheck } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { Menu, Bell, ShieldCheck, LogIn } from 'lucide-react';
+import { useLocation, Link } from 'react-router-dom';
 import { ConnectionStatusBadge } from '../common/ConnectionStatusBadge';
 import { HealthCheckResult } from '../../services/healthService';
+import { useAuth } from '../../hooks/useAuth';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -18,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   isChecking,
 }) => {
   const location = useLocation();
+  const { role, isAuthenticated } = useAuth();
 
   const getBreadcrumbTitle = (pathname: string): string => {
     if (pathname === '/') return 'Dashboard Overview';
@@ -29,6 +31,14 @@ export const Header: React.FC<HeaderProps> = ({
     if (pathname === '/login') return 'Authentication';
     return 'CRM';
   };
+
+  const getRoleStyle = (userRole?: string | null) => {
+    if (userRole === 'admin') return { color: '#7c3aed', iconColor: '#7c3aed', label: 'Admin' };
+    if (userRole === 'manager') return { color: '#4f46e5', iconColor: '#4f46e5', label: 'Manager' };
+    return { color: '#2563eb', iconColor: '#2563eb', label: 'Counsellor' };
+  };
+
+  const roleStyle = getRoleStyle(role);
 
   return (
     <header className="top-header">
@@ -57,10 +67,27 @@ export const Header: React.FC<HeaderProps> = ({
           isChecking={isChecking}
         />
 
-        <button className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8125rem' }}>
-          <ShieldCheck size={15} color="#2563eb" />
-          <span>Role: Counsellor</span>
-        </button>
+        {/* Dynamic Role / Auth Button */}
+        {isAuthenticated ? (
+          <Link
+            to="/settings"
+            className="btn btn-secondary"
+            style={{ padding: '6px 12px', fontSize: '0.8125rem' }}
+            title="View role settings"
+          >
+            <ShieldCheck size={15} color={roleStyle.iconColor} />
+            <span style={{ fontWeight: 600, color: roleStyle.color }}>Role: {roleStyle.label}</span>
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="btn btn-secondary"
+            style={{ padding: '6px 12px', fontSize: '0.8125rem' }}
+          >
+            <LogIn size={14} color="#2563eb" />
+            <span>Sign In</span>
+          </Link>
+        )}
 
         <button
           aria-label="Notifications"
